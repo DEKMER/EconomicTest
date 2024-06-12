@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
@@ -16,6 +17,11 @@
         </div>
       </div>
       <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">IlyaTest</div>
+      </div>
     </div>
     <script>
 
@@ -53,9 +59,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/IlyaTest.loader.js";
       var config = {
-        dataUrl: buildUrl + "/IlyaTest.data",
-        frameworkUrl: buildUrl + "/IlyaTest.framework.js",
-        codeUrl: buildUrl + "/IlyaTest.wasm",
+        dataUrl: buildUrl + "/IlyaTest.data.gz",
+        frameworkUrl: buildUrl + "/IlyaTest.framework.js.gz",
+        codeUrl: buildUrl + "/IlyaTest.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "IlyaTest",
@@ -101,6 +107,9 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
               }).catch((message) => {
                 alert(message);
               });
